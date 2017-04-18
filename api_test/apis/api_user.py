@@ -12,22 +12,18 @@ def token_haved(func):
                 token_text = request.headers['token']
                 if token_can_use(token_text):
                     return func(*args, **kwargs)
+                else:
+                    return make_response("token is wrong!")
         except:
-            pass
+            return make_response("request is empty")
             # if request.json.get('token') is not None:
             #     token_text = request.json.get('token')
             #     if token_can_use(token_text):
             #         return func(*args, **kwargs)
             #     else:
             #         pass
-        return make_response("token wrong")
 
     return wrapper
-
-
-@token_haved
-def token_error():
-    return jsonify({"error": "token is wrong"})
 
 
 @app.route('/ppsp/login', methods=['POST'])

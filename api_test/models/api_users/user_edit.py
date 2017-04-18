@@ -1,7 +1,7 @@
-# 查
 from api_test.models.api_users.user_model import *
 
 
+# 查
 def search_user(api_id, api_secret):
     try:
         tmp = User.get(User.api_id == api_id, User.api_secret == api_secret)
@@ -10,7 +10,7 @@ def search_user(api_id, api_secret):
     return tmp
 
 
-def have_user(api_id=None, api_secret=None, id_in_table=None, *args, **kwargs):
+def have_user(api_id=None, api_secret=None, id_in_table=None):
     if api_id is not None:
         try:
             user = User.get(User.api_id == api_id)

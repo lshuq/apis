@@ -3,15 +3,20 @@ from api_test.models.api_terrains.terrain_block_model import Zb_terrain_block as
 
 
 # 插入数据
-def upload_terrain(datas):
-    for data in datas:
-        block = Block()
-        block.order_id = data.order_id
-        block.name = data.name
-        block.type = data.type
-        block.area = data.area
-        block.edge = data.edge
-        block.save()
+def upload_terrain(data):
+    try:
+        if Block.get(Block.order_id == data['order_id']) is not None:
+            return False
+    except:
+        pass
+    block = Block()
+    block.order_id = data['order_id']
+    block.name = data['name']
+    block.type = data['type']
+    block.area = data['area']
+    block.edge = str(data['edge'])
+    block.save()
+    return block
 
 
 # 删除数据
