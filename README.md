@@ -4,4 +4,6 @@
 
 # 以下接口必须把token放入headers,否则会返回token wrong错误
 “/” 测试token是否有效    
-“/ppsp/upload_terrain_block” 添加地形地块数据    
+“/ppsp/upload_terrain_block” 添加地形地块数据, 接收{order_id,name,typr,area,edge}    
+“/ppsp/upload_terrain_block” 删除地形地块数据, 接收order_id   
+“/ppsp/upload_terrain_block” 查询地形地块数据, 接收order_id    
