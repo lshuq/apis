@@ -1,29 +1,7 @@
-import functools
 from flask import *
+from api_test.apis.token import token_haved
 from api_test.main.app_init import app
 from api_test.models.api_users.user_edit import *
-
-
-def token_haved(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        try:
-            if request.headers['token'] != "":
-                token_text = request.headers['token']
-                if token_can_use(token_text):
-                    return func(*args, **kwargs)
-                else:
-                    return make_response("token is wrong!")
-        except:
-            return make_response("request is empty")
-            # if request.json.get('token') is not None:
-            #     token_text = request.json.get('token')
-            #     if token_can_use(token_text):
-            #         return func(*args, **kwargs)
-            #     else:
-            #         pass
-
-    return wrapper
 
 
 @app.route('/ppsp/login', methods=['POST'])

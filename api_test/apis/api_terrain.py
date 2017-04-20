@@ -1,7 +1,6 @@
 from flask import *
 from api_test.apis.api_user import *
 from api_test.main.app_init import app
-# from api_test.apis.api_user import token_haved
 from api_test.models.api_terrains.terrain_block_edit import *
 from api_test.apis.token import token_haved
 
