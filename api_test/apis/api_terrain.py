@@ -18,7 +18,7 @@ def upload_terrain_block():
         a = upload_terrain(datas)
         if a is False:
             result += (str(datas['order_id']) + '  ')
-    if result is not None:
+    if result is not '':
         return jsonify({'warning': "订单号为   " + result + " 的订单已存在，未被添加！"})
     return make_response("upload success")
 
