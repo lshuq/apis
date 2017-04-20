@@ -1,5 +1,26 @@
+import re
+
 from api_test.models.api_terrains.terrain_block_model import *
 from api_test.models.api_terrains.terrain_block_model import Zb_terrain_block as Block
+
+
+def edge_turn(edge):
+    edge = edge.replace(',', ' ')
+    edge = edge.replace('[', '')
+    edge = edge.replace(']', '')
+    edge = edge.replace('{', '')
+    edge = edge.replace('}', '')
+    edge = edge.replace(':', '')
+    edge = edge.replace('\'', '')
+    edge = re.split(r'\s+', edge)
+    dictionary = {}
+    edge_list = []
+    for i in range(len(edge)):
+        if i % 4 == 0:
+            edge_list.append(dictionary)
+        if i % 2 == 0:
+            dictionary[str(edge[i])] = edge[i + 1]
+    return edge_list
 
 
 def show_terrain(block):
@@ -8,7 +29,7 @@ def show_terrain(block):
     new_block['name'] = block.name
     new_block['type'] = block.type
     new_block['area'] = block.area
-    new_block['edge'] = block.edge
+    new_block['edge'] = edge_turn(block.edge)
     return new_block
 
 
