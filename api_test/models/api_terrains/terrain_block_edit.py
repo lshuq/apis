@@ -35,11 +35,6 @@ def show_terrain(block):
 
 # 插入数据
 def upload_terrain(data):
-    try:
-        if Block.get(Block.order_id == data['order_id']) is not None:
-            return False
-    except:
-        pass
     block = Block()
     block.order_id = data['order_id']
     block.name = data['name']
@@ -70,6 +65,11 @@ def delete_terrain(datas=None, order_id=None):
     return False
 
 
+def excute_sql(table, sql):
+    query_result = table.raw(sql)
+    return query_result.execute()
+
+
 # 查找数据
 def search_terrain(datas=None, order_id=None, name=None):
     if datas is not None:
@@ -95,7 +95,8 @@ def search_terrain(datas=None, order_id=None, name=None):
             return new_datas
     if order_id is not None:
         try:
-            block = Block.get(Block.order_id == order_id)
+            # block = Block.get(Block.order_id == order_id)
+            block = Block.select().filter(Block.order_id == order_id)
             return block
         except:
             pass
