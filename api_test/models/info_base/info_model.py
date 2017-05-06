@@ -5,7 +5,7 @@ from api_test.models.basemodels import *
 
 class Info(MySQLModel):
     company_id = IntegerField()
-    code = IntegerField()
+    code = CharField()
     pwd = CharField()
     name = CharField()
     company_type = IntegerField()  # 1:植保服务商；2:测评机构；3:监督机构
@@ -23,18 +23,16 @@ class Info(MySQLModel):
     qualification = CharField()
 
     def logo_base64(self, picture):
-        pic_base64 = base64.b64encode(picture)
+        pic_base64 = picture.encode()
         self.logo = pic_base64
 
     def licence_base64(self, picture):
-        pic_base64 = base64.b64encode(picture)
+        pic_base64 = picture.encode()
         self.business_licence = pic_base64
 
     def qualification_base64(self, picture):
-        pic_base64 = base64.b64encode(picture)
+        pic_base64 = picture.encode()
         self.qualification = pic_base64
-
-    pass
 
 
 try:
