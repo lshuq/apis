@@ -18,9 +18,9 @@ class Info(MySQLModel):
     hotline = CharField()
     authentication = IntegerField()  # 认证状态，默认0,，未认证
     email = CharField()
-    logo = CharField()
-    business_licence = CharField()
-    qualification = CharField()
+    logo = TextField()
+    business_licence = TextField()
+    qualification = TextField()
 
     def logo_base64(self, picture):
         pic_base64 = picture.encode()

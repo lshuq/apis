@@ -22,9 +22,9 @@ def info_add(info_dict):
     new_info.authentication = info_dict['authentication']
     if info_dict['email'] is not None:
         new_info.email = info_dict['email']
-    new_info.logo_base64(info_dict['logo'])
-    new_info.licence_base64(info_dict['business_licence'])
-    new_info.qualification_base64(info_dict['qualification'])
+    new_info.logo = info_dict['logo']
+    new_info.business_licence = info_dict['business_licence']
+    new_info.qualification = info_dict['qualification']
     new_info.save()
     return new_info
 
@@ -33,8 +33,6 @@ def info_modify(info_dict):
     try:
         new_info = Info.get(Info.company_id == info_dict['company_id'])
     except:
-        return False
-    if len(new_info) is 0:
         return False
     try:
         new_info.pwd = info_dict['pwd']
@@ -47,14 +45,13 @@ def info_modify(info_dict):
         new_info.contacts_name = info_dict['contacts_name']
         new_info.contacts_phone = info_dict['contacts_phone']
         new_info.hotline = info_dict['hotline']
-        new_info.authentication = info_dict['authentication']
-        if info_dict['email'] is not None:
+        if 'email' in info_dict:
             new_info.email = info_dict['email']
-        if info_dict['email'] is not None:
+        if 'logo' in info_dict:
             new_info.logo_base64(info_dict['logo'])
-        if info_dict['email'] is not None:
+        if 'business_licence' in info_dict:
             new_info.licence_base64(info_dict['business_licence'])
-        if info_dict['email'] is not None:
+        if 'qualification' in info_dict:
             new_info.qualification_base64(info_dict['qualification'])
     except:
         return False
