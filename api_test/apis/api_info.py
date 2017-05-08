@@ -89,7 +89,10 @@ def add_info():
     info_dict = request.json
     lack = info_check(info_dict, way=1)
     if lack:
-        return jsonify({"code": 0, "msg": "缺少参数", "缺少参数列表": lack})
+        return jsonify({"code": 100, "msg": "缺少参数", "缺少参数列表": lack})
+    wrong = info_check_value(info_dict)
+    if wrong:
+        return jsonify({"code": 101, "msg": "参数出错", "出错参数列表": wrong})
     info = info_add(info_dict)
     if info:
         return jsonify({"code": 1, "msg": "处理成功", "id": info.company_id})
@@ -101,10 +104,10 @@ def modify_info():
     info_dict = request.json
     lack = info_check(info_dict)
     if lack:
-        return jsonify({"code": 0, "msg": "缺少参数", "缺少参数列表": lack})
+        return jsonify({"code": 100, "msg": "缺少参数", "缺少参数列表": lack})
     wrong = info_check_value(info_dict)
     if wrong:
-        return jsonify({"code": 0, "msg": "参数出错", "出错参数列表": wrong})
+        return jsonify({"code": 101, "msg": "参数出错", "出错参数列表": wrong})
     info = info_modify(info_dict)
     if info:
         return jsonify({"code": 1, "msg": "处理成功", "id": info.company_id})
