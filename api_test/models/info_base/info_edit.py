@@ -20,7 +20,7 @@ def info_add(info_dict):
     new_info.contacts_phone = info_dict['contacts_phone']
     new_info.hotline = info_dict['hotline']
     new_info.authentication = info_dict['authentication']
-    if info_dict['email'] is not None:
+    if 'email' in info_dict:
         new_info.email = info_dict['email']
     new_info.logo = info_dict['logo']
     new_info.business_licence = info_dict['business_licence']
